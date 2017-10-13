@@ -21,7 +21,7 @@ import okio.Source;
 
 public class HttpHelper {
 
-    static Boolean iris;
+    static Boolean customVision;
 
     public static String makeRequest(RequestPackage requestPackage, InputStream data)
             throws Exception {
@@ -32,11 +32,11 @@ public class HttpHelper {
 
         Request.Builder requestBuilder = new Request.Builder();
 
-        iris = (requestPackage.getParams().containsKey(MainActivity.IRIS_REQUEST)) ? true : false;
+        customVision = (requestPackage.getParams().containsKey(MainActivity.CUSTOM_REQUEST)) ? true : false;
 
         if (requestPackage.getMethod().equals("POST")) {
             RequestBody requestBody = null;
-            if (iris) {
+            if (customVision) {
                 //TODO: CHANGE ME!!
                 requestBuilder.addHeader("Prediction-Key","c94c0e0d68dd41648e3eab60fa33a474");
                 if (requestPackage.getParams().containsKey("Url")) {

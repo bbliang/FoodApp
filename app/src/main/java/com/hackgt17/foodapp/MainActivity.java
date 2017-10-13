@@ -63,12 +63,12 @@ public class MainActivity extends AppCompatActivity {
 
     public final String URL = "url";
     public final String IMAGE = "image";
-    public static final String TAG = "IRIS_LOGGER";
+    public static final String TAG = "CUSTOM_LOGGER";
     /**
      * Connection point to the Microsoft Custom Vision Service
      */
     private final String ENDPOINT = "https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/b2c5ee1f-815d-4b94-84a5-597f51ad5bc7/%s";
-    public static final String IRIS_REQUEST = "IRIS_REQUEST";
+    public static final String CUSTOM_REQUEST = "CUSTOM_REQUEST";
     private Activity thisActivity;
 
 
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private BroadcastReceiver irisReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver customReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, final Intent intent) {
 
@@ -92,15 +92,15 @@ public class MainActivity extends AppCompatActivity {
                         resultTV.setText(msg);
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
                     } else if (intent.getExtras().containsKey(CustomService.CUSTOM_SERVICE_PAYLOAD)) {
-                        CustomData irisData = (CustomData) intent
+                        CustomData customData = (CustomData) intent
                                 .getParcelableExtra(CustomService.CUSTOM_SERVICE_PAYLOAD);
-                        food_result = irisData.getPredictions().get(0);
+                        food_result = customData.getPredictions().get(0);
                         clearText();
                         String msg = String.format("I'm %.0f%% confident that this is a %s \n", food_result.getProbability() * 100, food_result.getClass_());
                         resultTV.append(msg);
 
-                        for (int i = 0; i < irisData.getPredictions().size(); i++) {
-                            Log.i(TAG, "onReceive: " + irisData.getPredictions().get(i).getClass_());
+                        for (int i = 0; i < customData.getPredictions().size(); i++) {
+                            Log.i(TAG, "onReceive: " + customData.getPredictions().get(i).getClass_());
                         }
                     }
                 }
@@ -130,8 +130,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         resultTV = (TextView) findViewById(R.id.resultText);
-        nutritionButton = (ImageButton) findViewById(R.id.nutriButton);
-        nutritionButton.setEnabled(false);
         photoButton = (ImageButton) findViewById(R.id.photoButon);
         photoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        broadcastManager.registerReceiver(irisReceiver, new IntentFilter(CustomService.CUSTOM_SERVICE_NAME));
+        broadcastManager.registerReceiver(customReceiver, new IntentFilter(CustomService.CUSTOM_SERVICE_NAME));
     }
 
     private void clearText() {
@@ -206,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
         if (networkOn) {
             if (!urlText.getText().toString().equals("")) {
                 progressLoader();
-                requestIrisService(URL);
+                requestCustomService(URL);
             } else {
                 Toast.makeText(this, "Please enter url into text box above.", Toast.LENGTH_SHORT).show();
             }
@@ -218,14 +216,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        broadcastManager.unregisterReceiver(irisReceiver);
+        broadcastManager.unregisterReceiver(customReceiver);
     }
 
     /**
-     * Requests
-     * @param type
+     * Send a request to CVS API to process image recognition
+     * @param type two input options: picture through url or image
      */
-    private void requestIrisService(final String type) {
+    private void requestCustomService(final String type) {
 
         final Bitmap croppedImage = image.getCroppedImage();
 
@@ -234,16 +232,17 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 RequestPackage requestPackage = new RequestPackage();
                 Intent intent = new Intent(MainActivity.this, CustomService.class);
-                requestPackage.setParam(IRIS_REQUEST, "IRIS");
+                requestPackage.setParam(CUSTOM_REQUEST, "CUSTOM");
 
                 if (type.equals(URL)) {
                     requestPackage.setEndPoint(String.format(ENDPOINT, URL));
                     requestPackage.setParam("Url", urlText.getText().toString());
                 } else if (type.equals(IMAGE)) {
+                    //CVS only accepts images as byte arrays
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     croppedImage.compress(Bitmap.CompressFormat.JPEG, 50, stream);
                     byte[] byteArray = stream.toByteArray();
-                    Log.d(TAG, "requestIrisService: byte array size = " + byteArray.length);
+                    Log.d(TAG, "requestCustomService: byte array size = " + byteArray.length);
                     requestPackage.setEndPoint(String.format(ENDPOINT, IMAGE));
                     intent.putExtra(CustomService.REQUEST_IMAGE, byteArray);
                 }
@@ -297,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
         clearText();
         if (networkOn) {
             if (Build.MODEL.contains("x86")) {
-                requestIrisService(IMAGE);
+                requestCustomService(IMAGE);
                 progressLoader();
             } else {
                 dispatchTakePictureIntent();
@@ -378,7 +377,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getCrop(View v) {
-        requestIrisService(IMAGE);
+        requestCustomService(IMAGE);
         progressLoader();
     }
 
