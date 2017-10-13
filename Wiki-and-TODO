@@ -2,6 +2,13 @@ TODO:
 -Set up android emulator (AVD manager) to have camera/webcam access
 -Look into removing the URL or photo feature
 
+
+IDEAS/IMPROVEMENTS:
+-Maybe we can make this a real-time image recognition app, maybe every 5 sec
+in the background the app takes a picture and processes the image 
+
+Prediction API Endpoint (image): https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/b2c5ee1f-815d-4b94-84a5-597f51ad5bc7/image
+Prediction Key: c94c0e0d68dd41648e3eab60fa33a474
 This is how the whole thing fucking works. Lot's of moving parts
 -Custom Vision Service, Microsoft's new addition to its Cognitive Science line
 of products that they unveiled this year
