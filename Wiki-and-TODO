@@ -1,0 +1,8 @@
+TODO:
+-Set up android emulator (AVD manager) to have camera/webcam access
+-Look into removing the URL or photo feature
+
+This is how the whole thing fucking works. Lot's of moving parts
+-Custom Vision Service, Microsoft's new addition to its Cognitive Science line
+of products that they unveiled this year
+-network helper thing -> for url photo, and take photo
