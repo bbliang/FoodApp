@@ -21,7 +21,7 @@ public class RecipeActivity extends AppCompatActivity {
     private List<Recipe> myDataset = null;
 
 
-
+    private String test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
