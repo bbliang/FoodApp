@@ -22,6 +22,7 @@ import okio.Source;
 public class HttpHelper {
 
     static Boolean customVision;
+    static final String key = "c94c0e0d68dd41648e3eab60fa33a474";
 
     public static String makeRequest(RequestPackage requestPackage, InputStream data)
             throws Exception {
@@ -38,7 +39,7 @@ public class HttpHelper {
             RequestBody requestBody = null;
             if (customVision) {
                 //TODO: CHANGE ME!!
-                requestBuilder.addHeader("Prediction-Key","c94c0e0d68dd41648e3eab60fa33a474");
+                requestBuilder.addHeader("Prediction-Key", key);
                 if (requestPackage.getParams().containsKey("Url")) {
                     requestBuilder.addHeader("Content-Type","application/json");
                     JSONObject json = new JSONObject(requestPackage.getParams());

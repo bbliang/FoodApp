@@ -2,22 +2,58 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="C:\Users\Bryan Liang\Desktop\FoodApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/surajmasand/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="8e56a44220f22ab7d378b1cb1db4960584e8038e">
-        <dex dex="C:\Users\Bryan Liang\Desktop\FoodApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a53dfbb3a913daa6574cd1c123d69452f39869e5\classes.dex" />
+        sha1="c4ba5371a29ac9b2ad6129b1d39ea38750043eff">
+        <dex dex="/Users/surajmasand/dev/HackGT2017/FoodApp/app/build/intermediates/pre-dexed/debug/gson-2.8.0_4863316d58e5e59fac72b8919e5c036d45188071.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\Bryan Liang\Desktop\FoodApp\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/surajmasand/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="C:\Users\Bryan Liang\Desktop\FoodApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_24c73c160210cfde158541a1d55f7c23bc16540d\classes.dex" />
+        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
+        <dex dex="/Users/surajmasand/dev/HackGT2017/FoodApp/app/build/intermediates/pre-dexed/debug/okhttp-3.6.0_f89f4fb08791b33dc58b24353fea2ae36a7a4221.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/surajmasand/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v3.0.1/369f9aa48a629b4e92557b37326f42dc3de796e4/MPAndroidChart-v3.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="369f9aa48a629b4e92557b37326f42dc3de796e4">
+        <dex dex="/Users/surajmasand/dev/HackGT2017/FoodApp/app/build/intermediates/pre-dexed/debug/MPAndroidChart-v3.0.1_63a0cddbb1e63526ab7f7d5d8212983a1928a8d3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/surajmasand/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="/Users/surajmasand/dev/HackGT2017/FoodApp/app/build/intermediates/pre-dexed/debug/glide-3.7.0_5ea7bc0cea09ddb175d958f61f6da141bdf5a4a8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/surajmasand/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.11.0/840897fcd7223a8143f1d9b6f69714e7be34fd50/okio-1.11.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="840897fcd7223a8143f1d9b6f69714e7be34fd50">
+        <dex dex="/Users/surajmasand/dev/HackGT2017/FoodApp/app/build/intermediates/pre-dexed/debug/okio-1.11.0_029917baed751df6696093175ae9c048734c0ba3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/surajmasand/.android/build-cache/2652f88d0eb62ed512e3d03b03b1b36b4dde374b/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1a32a39a9fcae3d354a312cdb78c18159fa702e6">
+        <dex dex="/Users/surajmasand/dev/HackGT2017/FoodApp/app/build/intermediates/pre-dexed/debug/classes_5b52be947776150f3aff9ea976db0c97e05f4bc5.jar" />
     </item>
 
 </items>
