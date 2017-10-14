@@ -1,12 +1,14 @@
 package com.hackgt17.foodapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,7 +16,12 @@ import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.hackgt17.foodapp.models.Food2ForkSearchAPI;
+import com.hackgt17.foodapp.models.Recipe;
+
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.hackgt17.foodapp.R.id.parent;
 
@@ -23,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> ingredients;
     private ArrayAdapter adapter;
     private ListView mListView;
+    private LocalGetRecipesAPI localGetRecipesAPI;
 
 
     @Override
@@ -83,6 +91,50 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void getRecipes() {
 
+        SparseBooleanArray checked = mListView.getCheckedItemPositions();
+        String ingredientsSelected = "";
+
+        if (checked.size() == 0) {
+            Toast.makeText(this, "Please select at least 1 ingredient", Toast.LENGTH_LONG).show();
+            return;
+        } else {
+            for (int i = 0; i < checked.size(); i++) {
+                if (checked.valueAt(i)) {
+                    ingredientsSelected += ", " + ingredients.get(i);
+                }
+            }
+            ingredientsSelected = ingredientsSelected.substring(2); // removes the first comma-space
+        }
+
+        localGetRecipesAPI = new LocalGetRecipesAPI(ingredientsSelected);
+        localGetRecipesAPI.execute((Void) null);
+
+    }
+
+    class LocalGetRecipesAPI extends Food2ForkSearchAPI {
+
+        // has "protected List<Recipe> recipeList = new ArrayList<>(); "
+        // which we can access in this subclass
+
+        public LocalGetRecipesAPI(String ingredientString) {
+            super(ingredientString, getApplicationContext());
+        }
+
+        @Override
+        protected void onPostExecute(Boolean success) {
+            if (success) {
+                Intent i = new Intent(getApplicationContext(), RecipeActivity.class);
+                i.putExtra("recipeList", (Serializable) recipeList);
+                // use getIntent().getSerializableExtra("recipeList") to get back that List
+
+                startActivity(i);
+
+            } else {
+                Toast.makeText(getApplicationContext(), "Sorry, but there was an error with your request.", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
 }

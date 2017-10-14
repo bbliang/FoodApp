@@ -15,7 +15,8 @@
         android:id="@+id/foodAPIButton"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:text="@string/foodAPIButtonText"/>
+        android:text="@string/foodAPIButtonText"
+        android:onClick="getRecipes" />
 
     <ListView
         android:id="@+id/listOfIngredients"
