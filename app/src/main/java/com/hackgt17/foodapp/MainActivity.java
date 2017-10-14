@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         //listview
         mListView = (ListView) findViewById(R.id.listOfIngredients);
+        mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         ingredients = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, ingredients);
         mListView.setAdapter(adapter);
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // change the checkbox state
-                CheckedTextView checkedTextView = ((CheckedTextView)view);
+                CheckedTextView checkedTextView = (CheckedTextView) view;
                 checkedTextView.setChecked(!checkedTextView.isChecked());
             }
         });
@@ -68,17 +69,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        //super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode) {
             case (0) : {
                 if (resultCode == Activity.RESULT_OK) {
                     String newIngredient = data.getStringExtra("Ingredient");
                     ingredients.add(newIngredient);
-
-                    //update listview
-                    ((ArrayAdapter)mListView.getAdapter()).notifyDataSetChanged();
                     mListView.setItemChecked(ingredients.size() - 1, true);
-                    ((ArrayAdapter)mListView.getAdapter()).notifyDataSetChanged();
                     Toast.makeText(this, "Added " + newIngredient, Toast.LENGTH_LONG).show();
                 }
                 break;
