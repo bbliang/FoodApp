@@ -135,24 +135,25 @@ public class MainActivity extends AppCompatActivity {
             case (0) : {
                 if (resultCode == Activity.RESULT_OK) {
                     String newIngredient = data.getStringExtra("Ingredient");
-                    ingredients.add(newIngredient);
-                    mListView.setItemChecked(ingredients.size() - 1, true);
-                    chosenIngredients.add(true);
-
-//                    mListView.setSelection(ingredients.size() - 1);
-//                    mListView.setSelected(true);
-
-                    ((ArrayAdapter)mListView.getAdapter()).notifyDataSetChanged();
-                    Toast.makeText(this, "Added " + newIngredient, Toast.LENGTH_LONG).show();
+                    addIngredientToList(newIngredient);
                 }
                 break;
             }
         }
     }
 
+
+    private void addIngredientToList(String newIngredient) {
+        ingredients.add(newIngredient);
+        mListView.setItemChecked(ingredients.size() - 1, true);
+        chosenIngredients.add(true);
+
+        ((ArrayAdapter)mListView.getAdapter()).notifyDataSetChanged();
+        Toast.makeText(this, "Added " + newIngredient, Toast.LENGTH_LONG).show();
+    }
+
     public void getRecipes(View view) {
 
-//        SparseBooleanArray checked = mListView.getCheckedItemPositions();
         HashSet<String> includedFood = new HashSet<>();
         String ingredientsSelected = "";
 

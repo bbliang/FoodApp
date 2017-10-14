@@ -21,7 +21,7 @@
                 android:id="@+id/recipe_photo"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginRight="16dp"
+                android:layout_margin="16dp"
                 />
 
             <TextView
@@ -39,6 +39,7 @@
                 android:id="@+id/publisher_name"
                 android:layout_toRightOf="@+id/recipe_photo"
                 android:layout_below="@+id/recipe_title"
+                android:textSize="20sp"
                 />
 
         </RelativeLayout>
