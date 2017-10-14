@@ -35,7 +35,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hackgt17.foodapp.helpers.Food2ForkSearchAPI;
 import com.hackgt17.foodapp.helpers.NetworkHelper;
 import com.hackgt17.foodapp.helpers.RequestPackage;
 import com.hackgt17.foodapp.models.Prediction;

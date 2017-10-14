@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //listview
-        mListView = (ListView) findViewById(R.id.list);
+        mListView = (ListView) findViewById(R.id.listOfIngredients);
         ingredients = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, ingredients);
         mListView.setAdapter(adapter);

@@ -1,4 +1,4 @@
-package com.hackgt17.foodapp.helpers;
+package com.hackgt17.foodapp.models;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -32,7 +32,6 @@ public class Food2ForkSearchAPI extends AsyncTask<Void, Void, Boolean> {
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    private static final String COOKIES_HEADER = "Set-Cookie";
     //public static java.net.CookieManager cookieManager = new java.net.CookieManager();
 
     private final String ingredients;

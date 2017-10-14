@@ -1,4 +1,4 @@
-package com.hackgt17.foodapp.helpers;
+package com.hackgt17.foodapp.models;
 
 public class Recipe {
 
