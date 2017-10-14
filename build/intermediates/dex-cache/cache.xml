@@ -3,30 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Bryan Liang\Desktop\FoodApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="C:\Users\vaugh\OneDrive\HackGT2017\FoodApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="1b51907b2db7eddf4b14dfe69cdf706b1d446a4b">
-        <dex dex="C:\Users\Bryan Liang\Desktop\FoodApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a53dfbb3a913daa6574cd1c123d69452f39869e5\classes.dex" />
+        sha1="3d6ccebb50c3c33de5a5d656880cfa588e0f7389">
+        <dex dex="C:\Users\vaugh\OneDrive\HackGT2017\FoodApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_191b974acb53065bcc46be7665e2a2cefc1d22eb\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Bryan Liang\Desktop\FoodApp\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="C:\Users\vaugh\OneDrive\HackGT2017\FoodApp\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="C:\Users\Bryan Liang\Desktop\FoodApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_24c73c160210cfde158541a1d55f7c23bc16540d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Bryan Liang\.android\build-cache\1b65f43bf1cafca2509bbe77b1d7db544ff138b2\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c5d103b270b3f3b50d8e6b44aa8e068b0de33426">
-        <dex dex="C:\Users\Bryan Liang\Desktop\FoodApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8bab8bec1d20ead79a16b6448d58fdb3892a8457\classes.dex" />
+        <dex dex="C:\Users\vaugh\OneDrive\HackGT2017\FoodApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_a6f2170ad91226d9a1bba909336fc40e617777a1\classes.dex" />
     </item>
 
 </items>
