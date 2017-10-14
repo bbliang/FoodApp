@@ -51,13 +51,13 @@ public class CameraActivity extends AppCompatActivity {
 
     private static final int CAMERA_CLICK_REQUEST_CODE = 3;
     private static final int GALLERY_CLICK_REQUEST_CODE = 4;
-    private boolean networkOn;
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    //private boolean networkOn;
+    //private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int SELECT_PICTURE = 2;
 
     TextView resultTV;
     ImageButton photoButton, urlButton, galleryButton, cropButton, addItemButton;
-    EditText urlText;
+    //EditText urlText;
     CropImageView image;
     Bitmap bitmap;
     Drawable d;
@@ -65,7 +65,7 @@ public class CameraActivity extends AppCompatActivity {
     LocalBroadcastManager broadcastManager;
     Intent resultIntent;
 
-    public final String URL = "url";
+    //public final String URL = "url";
     public final String IMAGE = "image";
     public static final String TAG = "CUSTOM_LOGGER";
     /**
@@ -85,7 +85,7 @@ public class CameraActivity extends AppCompatActivity {
         thisActivity = this;
 
         broadcastManager = LocalBroadcastManager.getInstance(this);
-        networkOn = NetworkHelper.hasNetworkAccess(this);
+        //networkOn = NetworkHelper.hasNetworkAccess(this);
 
         image = (CropImageView) findViewById(imageView);
         try {
@@ -96,6 +96,16 @@ public class CameraActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         resultTV = (TextView) findViewById(R.id.resultText);
+//****Start
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+                (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(thisActivity,
+                    new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, CAMERA_CLICK_REQUEST_CODE);
+        } else {
+            resultTV.setVisibility(View.GONE);
+            takePhoto();
+        }
+//****End
         photoButton = (ImageButton) findViewById(R.id.photoButton);
         photoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,14 +127,14 @@ public class CameraActivity extends AppCompatActivity {
                 getCrop(v);
             }
         });
-        urlButton = (ImageButton) findViewById(R.id.urlButton);
-        urlButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                resultTV.setVisibility(View.GONE);
-                openUrl();
-            }
-        });
+//        urlButton = (ImageButton) findViewById(R.id.urlButton);
+//        urlButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                resultTV.setVisibility(View.GONE);
+//                openUrl();
+//            }
+//        });
         galleryButton = (ImageButton) findViewById(R.id.galleryButton);
         galleryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,7 +152,7 @@ public class CameraActivity extends AppCompatActivity {
         addItemButton = (ImageButton) findViewById(R.id.addItemImageButton);
         addItemButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (food_result.getClass_() != null) {
+                if (food_result != null) {
                     resultIntent = new Intent();
                     resultIntent.putExtra("Ingredient", food_result.getClass_());
                     setResult(Activity.RESULT_OK, resultIntent);
@@ -154,19 +164,19 @@ public class CameraActivity extends AppCompatActivity {
                 }
             }
         });
-        urlText = (EditText) findViewById(R.id.urlText);
-        urlText.setText("https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Single.jpg/220px-Banana-Single.jpg");
+        //urlText = (EditText) findViewById(R.id.urlText);
+        //urlText.setText("https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Single.jpg/220px-Banana-Single.jpg");
 
-        urlText.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    new DownloadImageTask().execute(urlText.getText().toString());
-                    return true;
-                }
-                return false;
-            }
-        });
+//        urlText.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+//                    new DownloadImageTask().execute(urlText.getText().toString());
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
 
         broadcastManager.registerReceiver(customReceiver, new IntentFilter(CustomService.CUSTOM_SERVICE_NAME));
     }
@@ -286,19 +296,19 @@ public class CameraActivity extends AppCompatActivity {
         resultTV.setText("Thinking...");
     }
 
-    public void openUrl() {
-        clearText();
-        if (networkOn) {
-            if (!urlText.getText().toString().equals("")) {
-                progressLoader();
-                requestCustomService(URL);
-            } else {
-                Toast.makeText(this, "Please enter url into text box above.", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(this, "Network not available", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    public void openUrl() {
+//        clearText();
+//        if (networkOn) {
+//            if (!urlText.getText().toString().equals("")) {
+//                progressLoader();
+//                requestCustomService(URL);
+//            } else {
+//                Toast.makeText(this, "Please enter url into text box above.", Toast.LENGTH_SHORT).show();
+//            }
+//        } else {
+//            Toast.makeText(this, "Network not available", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     @Override
     protected void onDestroy() {
@@ -322,10 +332,11 @@ public class CameraActivity extends AppCompatActivity {
                 requestPackage.setParam(CUSTOM_REQUEST, "CUSTOM");
                 String endpoint = getString(R.string.visionAPIBaseURL);
 
-                if (type.equals(URL)) {
-                    requestPackage.setEndPoint(String.format(endpoint, URL));
-                    requestPackage.setParam("Url", urlText.getText().toString());
-                } else if (type.equals(IMAGE)) {
+//                if (type.equals(URL)) {
+//                    requestPackage.setEndPoint(String.format(endpoint, URL));
+//                    requestPackage.setParam("Url", urlText.getText().toString());
+//                }
+                if (type.equals(IMAGE)) {
                     //CVS only accepts images as byte arrays
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     croppedImage.compress(Bitmap.CompressFormat.JPEG, 50, stream);
