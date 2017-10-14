@@ -147,7 +147,6 @@ public class CameraActivity extends AppCompatActivity {
         addItemButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (food_result.getClass_() != null) {
-                    //TODO: add ingredient name to MainActivity list
                     resultIntent = new Intent();
                     resultIntent.putExtra("Ingredient", food_result.getClass_());
                     setResult(Activity.RESULT_OK, resultIntent);
