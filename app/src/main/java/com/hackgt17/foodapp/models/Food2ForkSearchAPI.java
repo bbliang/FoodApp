@@ -167,7 +167,7 @@ public class Food2ForkSearchAPI extends AsyncTask<Void, Void, Boolean> {
 
                 for (int i = 0; i < json.getInt("count"); i++) {
                     JSONObject jsonRecipe = jsonArray.getJSONObject(i);
-                    saveRecipetoList(jsonRecipe);
+                    saveRecipeToList(jsonRecipe);
                 }
 
                 return true;
@@ -184,7 +184,7 @@ public class Food2ForkSearchAPI extends AsyncTask<Void, Void, Boolean> {
         return validData;
     }
 
-    private void saveRecipetoList(JSONObject jsonRecipe) throws JSONException {
+    private void saveRecipeToList(JSONObject jsonRecipe) throws JSONException {
         String publisher = jsonRecipe.getString("publisher");
         String f2fUrl = jsonRecipe.getString("f2f_url");
         String title = jsonRecipe.getString("title");
