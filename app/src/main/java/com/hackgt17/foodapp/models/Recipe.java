@@ -1,6 +1,8 @@
 package com.hackgt17.foodapp.models;
 
-public class Recipe {
+import java.io.Serializable;
+
+public class Recipe implements Serializable {
 
     /* Example of returned json within a recipe object
 
@@ -68,5 +70,8 @@ public class Recipe {
         return publisherUrl;
     }
 
+    public String toString() {
+        return ("Publisher: " + publisher + "\nTitle: " + title + "\nSource: " + sourceUrl + "\n");
+    }
 
 }

@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.hackgt17.foodapp.models.Recipe;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import static com.hackgt17.foodapp.R.id.parent;
@@ -30,6 +32,7 @@ import static com.hackgt17.foodapp.R.id.parent;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> ingredients;
+    private ArrayList<Boolean> chosenIngredients;
     private ArrayAdapter adapter;
     private ListView mListView;
     private LocalGetRecipesAPI localGetRecipesAPI;
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         //listview
         mListView = (ListView) findViewById(R.id.listOfIngredients);
         mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        chosenIngredients = new ArrayList<>();
         ingredients = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, ingredients);
         mListView.setAdapter(adapter);
@@ -102,8 +106,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // change the checkbox state
+
                 CheckedTextView checkedTextView = (CheckedTextView) view;
-                checkedTextView.setChecked(!checkedTextView.isChecked());
+                if(chosenIngredients.get(position)) {
+                    chosenIngredients.add(position, Boolean.FALSE);
+                } else {
+                    chosenIngredients.add(position, Boolean.TRUE);
+                }
+                // remove value that used to be there at index = position, which is now toggled
+                chosenIngredients.remove(position + 1);
+
+                checkedTextView.setChecked(chosenIngredients.get(position));
+
+                //checkedTextView.setChecked(checkedTextView.isChecked());
             }
         });
     }
@@ -122,6 +137,12 @@ public class MainActivity extends AppCompatActivity {
                     String newIngredient = data.getStringExtra("Ingredient");
                     ingredients.add(newIngredient);
                     mListView.setItemChecked(ingredients.size() - 1, true);
+                    chosenIngredients.add(true);
+
+//                    mListView.setSelection(ingredients.size() - 1);
+//                    mListView.setSelected(true);
+
+                    ((ArrayAdapter)mListView.getAdapter()).notifyDataSetChanged();
                     Toast.makeText(this, "Added " + newIngredient, Toast.LENGTH_LONG).show();
                 }
                 break;
@@ -131,16 +152,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void getRecipes(View view) {
 
-        SparseBooleanArray checked = mListView.getCheckedItemPositions();
+//        SparseBooleanArray checked = mListView.getCheckedItemPositions();
+        HashSet<String> includedFood = new HashSet<>();
         String ingredientsSelected = "";
 
-        if (checked.size() == 0) {
+        if (!chosenIngredients.contains((Boolean.TRUE))) {
             Toast.makeText(this, "Please select at least 1 ingredient", Toast.LENGTH_LONG).show();
             return;
         } else {
-            for (int i = 0; i < checked.size(); i++) {
-                if (checked.valueAt(i)) {
+            for (int i = 0; i < chosenIngredients.size(); i++) {
+                if (chosenIngredients.get(i) && !includedFood.contains(ingredients.get(i))) {
+                    // if that index is set to true and that food is not a duplicate
                     ingredientsSelected += ", " + ingredients.get(i);
+                    includedFood.add(ingredients.get(i));
                 }
             }
             ingredientsSelected = ingredientsSelected.substring(2); // removes the first comma-space
@@ -163,11 +187,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean success) {
             if (success) {
-                Intent i = new Intent(getApplicationContext(), RecipeActivity.class);
-                i.putExtra("recipeList", (Serializable) recipeList);
+                //Intent i = new Intent(getApplicationContext(), RecipeActivity.class);
+                //i.putExtra("recipeList", (Serializable) recipeList);
                 // use getIntent().getSerializableExtra("recipeList") to get back that List
 
-                startActivity(i);
+                //startActivity(i);
+                for (Recipe r : recipeList) {
+                    Log.d("Recipe Info:", r.toString());
+                }
 
             } else {
                 Toast.makeText(getApplicationContext(), "Sorry, but there was an error with your request.", Toast.LENGTH_LONG).show();
