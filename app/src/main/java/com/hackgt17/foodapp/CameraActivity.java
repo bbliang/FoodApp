@@ -308,7 +308,7 @@ public class CameraActivity extends AppCompatActivity {
                 RequestPackage requestPackage = new RequestPackage();
                 Intent intent = new Intent(CameraActivity.this, CustomService.class);
                 requestPackage.setParam(CUSTOM_REQUEST, "CUSTOM");
-                String endpoint = getString(R.string.visionAPIBaseURL) + getString(R.string.visionAPIIteration);
+                String endpoint = getString(R.string.visionAPIBaseURL);
 
                 if (type.equals(URL)) {
                     requestPackage.setEndPoint(String.format(endpoint, URL));

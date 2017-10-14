@@ -50,7 +50,7 @@
             android:layout_marginLeft="17dp"
             android:layout_marginStart="17dp"
             android:background="@android:color/transparent"
-            android:srcCompat="@drawable/ic_add_a_photo_black_24dp"
+            app:srcCompat="@drawable/ic_add_a_photo_black_24dp"
             android:text="Take Photo" />
     </RelativeLayout>
 

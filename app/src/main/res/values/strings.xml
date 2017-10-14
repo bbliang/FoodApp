@@ -5,6 +5,5 @@
     <string name="apiHttpPath">http://food2fork.com/api/search</string>
     <string name="apiKey">097c5827d56ea8ce46a2bbfe74a4fa09</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="visionAPIBaseURL">https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/b2c5ee1f-815d-4b94-84a5-597f51ad5bc7/image?iterationId=</string>
-    <string name="visionAPIIteration">65d3d41d-0be4-42f6-a8d1-1e8bd26bbf1b</string>
+    <string name="visionAPIBaseURL">https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/b2c5ee1f-815d-4b94-84a5-597f51ad5bc7/image</string>
 </resources>
