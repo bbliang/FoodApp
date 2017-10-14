@@ -20,7 +20,7 @@
             android:id="@+id/urlButton"
             android:layout_width="60dp"
             android:layout_height="45dp"
-            android:layout_alignTop="@+id/photoButon"
+            android:layout_alignTop="@+id/photoButton"
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
             android:text="Use Url"
@@ -40,7 +40,7 @@
             android:layout_alignParentEnd="true" />
 
         <ImageButton
-            android:id="@+id/photoButon"
+            android:id="@+id/photoButton"
             style="@android:style/Widget.DeviceDefault.ImageButton"
             android:layout_width="60dp"
             android:layout_height="45dp"
@@ -124,7 +124,7 @@
 
     </RelativeLayout>
 
-    <ImageButton
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/addItemImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

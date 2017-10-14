@@ -12,16 +12,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -44,11 +40,12 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static com.hackgt17.foodapp.R.id.imageView;
 
 public class CameraActivity extends AppCompatActivity {
 
@@ -59,7 +56,7 @@ public class CameraActivity extends AppCompatActivity {
     private static final int SELECT_PICTURE = 2;
 
     TextView resultTV;
-    ImageButton photoButton, urlButton, nutritionButton, galleryButton, cropButton, addItemButton;
+    ImageButton photoButton, urlButton, galleryButton, cropButton, addItemButton;
     EditText urlText;
     CropImageView image;
     Bitmap bitmap;
@@ -90,7 +87,7 @@ public class CameraActivity extends AppCompatActivity {
         broadcastManager = LocalBroadcastManager.getInstance(this);
         networkOn = NetworkHelper.hasNetworkAccess(this);
 
-        image = (CropImageView) findViewById(R.id.imageView);
+        image = (CropImageView) findViewById(imageView);
         try {
             d = Drawable.createFromStream(getAssets().open("apple.jpg"), null);
             image.setImageBitmap(((BitmapDrawable) d).getBitmap());
@@ -99,7 +96,7 @@ public class CameraActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         resultTV = (TextView) findViewById(R.id.resultText);
-        photoButton = (ImageButton) findViewById(R.id.photoButon);
+        photoButton = (ImageButton) findViewById(R.id.photoButton);
         photoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -174,55 +171,55 @@ public class CameraActivity extends AppCompatActivity {
         broadcastManager.registerReceiver(customReceiver, new IntentFilter(CustomService.CUSTOM_SERVICE_NAME));
     }
 
-
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            Log.d("Checking", "Reached Here 1");
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-                Toast.makeText(this, "There was an error in dispatchTakePictureIntent", Toast.LENGTH_LONG).show();
-            }
-            Log.d("Checking", "Reached Here 2");
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                Log.d("Checking", "Reached Here 2.1");
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.example.android.fileprovider",
-                        photoFile);
-                Log.d("Checking", "Reached Here 2.2");
-                //takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                Log.d("Checking", "Reached Here 3");
-                resultTV.setVisibility(View.GONE);
-
-                Log.d("Checking", "Reached Here 4");
-                //String fileImagePath = photoURI.getPath();
-
-                /*
-
-                Bitmap imageBitmap = null;
-                try {
-                    imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Log.e("Bitmap URI error", "Error getting image from URI");
-                }
-                image.setImageBitmap(imageBitmap);
-
-
-                 */
-
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-
-            }
-            Log.d("Checking", "Reached Here 5");
-        }
-    }
+//
+//    private void dispatchTakePictureIntent() {
+//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+//            Log.d("Checking", "Reached Here 1");
+//            // Create the File where the photo should go
+//            File photoFile = null;
+//            try {
+//                photoFile = createImageFile();
+//            } catch (IOException ex) {
+//                // Error occurred while creating the File
+//                Toast.makeText(this, "There was an error in dispatchTakePictureIntent", Toast.LENGTH_LONG).show();
+//            }
+//            Log.d("Checking", "Reached Here 2");
+//            // Continue only if the File was successfully created
+//            if (photoFile != null) {
+//                Log.d("Checking", "Reached Here 2.1");
+//                Uri photoURI = FileProvider.getUriForFile(this,
+//                        "com.example.android.fileprovider",
+//                        photoFile);
+//                Log.d("Checking", "Reached Here 2.2");
+//                //takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+//                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+//                Log.d("Checking", "Reached Here 3");
+//                resultTV.setVisibility(View.GONE);
+//
+//                Log.d("Checking", "Reached Here 4");
+//                //String fileImagePath = photoURI.getPath();
+//
+//                /*
+//
+//                Bitmap imageBitmap = null;
+//                try {
+//                    imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoURI);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    Log.e("Bitmap URI error", "Error getting image from URI");
+//                }
+//                image.setImageBitmap(imageBitmap);
+//
+//
+//                 */
+//
+//                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+//
+//            }
+//            Log.d("Checking", "Reached Here 5");
+//        }
+//    }
 
 
 
@@ -384,18 +381,30 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     public void takePhoto() {
-        clearText();
-        if (networkOn) {
-            if (Build.MODEL.contains("x86")) {
-                requestCustomService(IMAGE);
-                progressLoader();
-            } else {
-                dispatchTakePictureIntent();
-            }
-        } else {
-            Toast.makeText(this, "Network not available", Toast.LENGTH_SHORT).show();
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, 1);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            image.setImageBitmap(photo);
         }
     }
+
+//    public void takePhoto() {
+//        clearText();
+//        if (networkOn) {
+//            if (Build.MODEL.contains("x86")) {
+//                requestCustomService(IMAGE);
+//                progressLoader();
+//            } else {
+//                dispatchTakePictureIntent();
+//            }
+//        } else {
+//            Toast.makeText(this, "Network not available", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     public static Bitmap drawableToBitmap (Drawable drawable) {
         Bitmap bitmap = null;
@@ -419,37 +428,37 @@ public class CameraActivity extends AppCompatActivity {
         return bitmap;
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-//            Bundle extras = data.getExtras();
-//            Log.d("RequestImageCaptur Data", data.getDataString());
-//            image.setImageUriAsync(data.getData());
-//            bitmap = image.getCroppedImage();
-//            bitmap = (Bitmap) extras.get("data");
-//            image.setImageBitmap(bitmap);
-        } else if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK) {
-            if (data == null) {
-                Toast.makeText(this, "Error Selecting Image", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            try {
-                InputStream inputStream = getApplicationContext().getContentResolver().openInputStream(data.getData());
-                if (inputStream != null) {
-                    Log.d("SelectPic Data", data.getDataString());
-                    image.setImageUriAsync(data.getData());
-                    bitmap = image.getCroppedImage();
-//                    bitmap = BitmapFactory.decodeStream(new BufferedInputStream(inputStream));
-//                    image.setImageBitmap(bitmap);
-                } else {
-                    Toast.makeText(this, "Error Selecting Image", Toast.LENGTH_SHORT).show();
-                }
-            } catch (FileNotFoundException e) {
-                Toast.makeText(this, "Error Selecting Image", Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-            }
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+////            Bundle extras = data.getExtras();
+////            Log.d("RequestImageCaptur Data", data.getDataString());
+////            image.setImageUriAsync(data.getData());
+////            bitmap = image.getCroppedImage();
+////            bitmap = (Bitmap) extras.get("data");
+////            image.setImageBitmap(bitmap);
+//        } else if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK) {
+//            if (data == null) {
+//                Toast.makeText(this, "Error Selecting Image", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//            try {
+//                InputStream inputStream = getApplicationContext().getContentResolver().openInputStream(data.getData());
+//                if (inputStream != null) {
+//                    Log.d("SelectPic Data", data.getDataString());
+//                    image.setImageUriAsync(data.getData());
+//                    bitmap = image.getCroppedImage();
+////                    bitmap = BitmapFactory.decodeStream(new BufferedInputStream(inputStream));
+////                    image.setImageBitmap(bitmap);
+//                } else {
+//                    Toast.makeText(this, "Error Selecting Image", Toast.LENGTH_SHORT).show();
+//                }
+//            } catch (FileNotFoundException e) {
+//                Toast.makeText(this, "Error Selecting Image", Toast.LENGTH_SHORT).show();
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
