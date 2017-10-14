@@ -1,6 +1,6 @@
 package com.hackgt17.foodapp.helpers;
 
-import com.hackgt17.foodapp.MainActivity;
+import com.hackgt17.foodapp.CameraActivity;
 
 import org.json.JSONObject;
 
@@ -33,7 +33,7 @@ public class HttpHelper {
 
         Request.Builder requestBuilder = new Request.Builder();
 
-        customVision = (requestPackage.getParams().containsKey(MainActivity.CUSTOM_REQUEST)) ? true : false;
+        customVision = (requestPackage.getParams().containsKey(CameraActivity.CUSTOM_REQUEST)) ? true : false;
 
         if (requestPackage.getMethod().equals("POST")) {
             RequestBody requestBody = null;
