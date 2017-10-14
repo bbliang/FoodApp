@@ -1,5 +1,6 @@
 package com.hackgt17.foodapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,8 +8,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    ArrayList<String> ingredients = new ArrayList<>(5);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +38,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchCameraActivity() {
         Intent i = new Intent(this, CameraActivity.class);
-        startActivity(i);
+        startActivityForResult(i, 0);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case (0) : {
+                if (resultCode == Activity.RESULT_OK) {
+                    String newIngredient = data.getStringExtra("Ingredient");
+                    // TODO: Make this add to a list view or cards
+                    ingredients.add(newIngredient);
+                    Toast.makeText(this, "Added " + newIngredient, Toast.LENGTH_LONG).show();
+                }
+                break;
+            }
+        }
+    }
 
 
 

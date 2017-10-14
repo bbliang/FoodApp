@@ -60,13 +60,14 @@ public class CameraActivity extends AppCompatActivity {
     private static final int SELECT_PICTURE = 2;
 
     TextView resultTV;
-    ImageButton photoButton, urlButton, nutritionButton, galleryButton, cropButton;
+    ImageButton photoButton, urlButton, nutritionButton, galleryButton, cropButton, addItemButton;
     EditText urlText;
     CropImageView image;
     Bitmap bitmap;
     Drawable d;
     Prediction food_result;
     LocalBroadcastManager broadcastManager;
+    Intent resultIntent;
 
     public final String URL = "url";
     public final String IMAGE = "image";
@@ -139,6 +140,22 @@ public class CameraActivity extends AppCompatActivity {
                 } else {
                     resultTV.setVisibility(View.GONE);
                     openGallery();
+                }
+            }
+        });
+        addItemButton = (ImageButton) findViewById(R.id.addItemImageButton);
+        addItemButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (food_result.getClass_() != null) {
+                    //TODO: add ingredient name to MainActivity list
+                    resultIntent = new Intent();
+                    resultIntent.putExtra("Ingredient", food_result.getClass_());
+                    setResult(Activity.RESULT_OK, resultIntent);
+                    finish();
+                }
+                else {
+                    //not sure if getBaseContext will work but I tried 'this' and it didn't work
+                    Toast.makeText(getBaseContext(), "You haven't added a new ingredient", Toast.LENGTH_LONG).show();
                 }
             }
         });
