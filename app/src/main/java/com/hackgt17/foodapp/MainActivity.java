@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.SparseBooleanArray;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +17,7 @@ import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.hackgt17.foodapp.models.Food2ForkSearchAPI;
 import com.hackgt17.foodapp.models.Recipe;
 
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter adapter;
     private ListView mListView;
     private LocalGetRecipesAPI localGetRecipesAPI;
+    private OptionsFabLayout fabWithOptions;
 
 
     @Override
@@ -48,6 +51,41 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(adapter);
         adapter.setNotifyOnChange(true);
 
+        fabWithOptions = (OptionsFabLayout) findViewById(R.id.fab_l);
+        //Set mini fab's colors.
+        fabWithOptions.setMiniFabsColors(
+                R.color.colorPrimary,
+                R.color.green_fab);
+
+        //Set main fab clicklistener.
+        fabWithOptions.setMainFabOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (fabWithOptions.isOptionsMenuOpened()) {
+                    fabWithOptions.closeOptionsMenu();
+                }
+            }
+        });
+
+        //Set mini fabs clicklisteners.
+        fabWithOptions.setMiniFabSelectedListener(new OptionsFabLayout.OnMiniFabSelectedListener() {
+            @Override
+            public void onMiniFabSelected(MenuItem fabItem) {
+                switch (fabItem.getItemId()) {
+                    case R.id.fab_cam:
+                        launchCameraActivity();
+                        break;
+                    case R.id.fab_text:
+                        Toast.makeText(getApplicationContext(),
+                                fabItem.getTitle() + "clicked!",
+                                Toast.LENGTH_SHORT).show();
+                    default:
+                        break;
+                }
+            }
+        });
+
+/*
         FloatingActionButton camera = (FloatingActionButton) findViewById(R.id.cameraIcon);
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
             }
         });
-
+*/
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -91,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void getRecipes() {
+    public void getRecipes(View view) {
 
         SparseBooleanArray checked = mListView.getCheckedItemPositions();
         String ingredientsSelected = "";
