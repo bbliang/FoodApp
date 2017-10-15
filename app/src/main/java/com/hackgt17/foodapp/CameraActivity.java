@@ -30,6 +30,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -59,7 +60,8 @@ public class CameraActivity extends AppCompatActivity {
     private static final int SELECT_PICTURE = 2;
 
     TextView resultTV;
-    ImageButton photoButton, urlButton, nutritionButton, galleryButton, cropButton, addItemButton;
+    ImageButton photoButton, urlButton, nutritionButton, galleryButton, addItemButton;
+    Button cropButton;
     EditText urlText;
     CropImageView image;
     Bitmap bitmap;
@@ -113,7 +115,7 @@ public class CameraActivity extends AppCompatActivity {
                 }
             }
         });
-        cropButton = (ImageButton) findViewById(R.id.useCrop);
+        cropButton = (Button) findViewById(R.id.useCrop);
         cropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +147,7 @@ public class CameraActivity extends AppCompatActivity {
         addItemButton = (ImageButton) findViewById(R.id.addItemImageButton);
         addItemButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (food_result.getClass_() != null) {
+                if (food_result != null) {
                     resultIntent = new Intent();
                     resultIntent.putExtra("Ingredient", food_result.getClass_());
                     setResult(Activity.RESULT_OK, resultIntent);
@@ -153,7 +155,7 @@ public class CameraActivity extends AppCompatActivity {
                 }
                 else {
                     //not sure if getBaseContext will work but I tried 'this' and it didn't work
-                    Toast.makeText(getBaseContext(), "You haven't added a new ingredient", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Please click the \"Analyze\" button first", Toast.LENGTH_LONG).show();
                 }
             }
         });

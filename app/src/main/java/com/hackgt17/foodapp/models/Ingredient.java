@@ -1,5 +1,7 @@
 package com.hackgt17.foodapp.models;
 
+import java.io.Serializable;
+
 /**
  * Example of relevant part of return JSON
  * There is more to the returned JSON that I am ignoring
@@ -23,7 +25,7 @@ package com.hackgt17.foodapp.models;
  *
  */
 
-public class Ingredient {
+public class Ingredient implements Serializable {
 
     private String name;
     private int servingQuantity;
@@ -119,10 +121,6 @@ public class Ingredient {
 
     @Override
     public String toString() {
-        return name;
-    }
-
-    public String nutritionalInfo() {
         return "Calories: " + calories + "\nTotal Fat: " + totalFat + "\nSugar: " + sugar
                 + "\nProtein: " + protein;
     }
