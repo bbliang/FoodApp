@@ -142,20 +142,20 @@ public class CameraActivity extends AppCompatActivity {
 //                openUrl();
 //            }
 //        });
-        galleryButton = (ImageButton) findViewById(R.id.galleryButton);
-        galleryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
-                        (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
-                    ActivityCompat.requestPermissions(thisActivity,
-                            new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, GALLERY_CLICK_REQUEST_CODE);
-                } else {
-                    resultTV.setVisibility(View.GONE);
-                    openGallery();
-                }
-            }
-        });
+//        galleryButton = (ImageButton) findViewById(R.id.galleryButton);
+//        galleryButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+//                        (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
+//                    ActivityCompat.requestPermissions(thisActivity,
+//                            new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, GALLERY_CLICK_REQUEST_CODE);
+//                } else {
+//                    resultTV.setVisibility(View.GONE);
+//                    openGallery();
+//                }
+//            }
+//        });
         addItemButton = (ImageButton) findViewById(R.id.addItemImageButton);
         addItemButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
