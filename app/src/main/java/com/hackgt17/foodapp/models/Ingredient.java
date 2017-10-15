@@ -117,10 +117,13 @@ public class Ingredient implements Serializable {
     public double getPotassium() {
         return potassium;
     }
-
-
     @Override
     public String toString() {
+        return name;
+    }
+
+
+    public String getNutitionInfo() {
         return "Calories: " + calories + "\nTotal Fat: " + totalFat + "\nSugar: " + sugar
                 + "\nProtein: " + protein;
     }
