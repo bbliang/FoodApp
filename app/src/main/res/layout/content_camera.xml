@@ -124,12 +124,15 @@
 
     </RelativeLayout>
 
-    <ImageButton
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/addItemImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        android:clickable="true"
+        app:fabSize="mini"
+        app:srcCompat="@drawable/ic_add_white_24dp"
+        android:layout_marginEnd="11dp"
+        android:layout_below="@+id/photoLayout"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
