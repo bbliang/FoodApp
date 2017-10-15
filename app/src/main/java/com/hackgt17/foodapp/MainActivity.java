@@ -17,6 +17,7 @@ import android.speech.RecognizerIntent;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Boolean> chosenIngredients;
     private ArrayAdapter adapter;
     private ListView mListView;
+    private TextView noIngredients;
     private LocalGetRecipesAPI localGetRecipesAPI;
     private LocalNutritionAPI localNutritionAPI;
     private OptionsFabLayout fabWithOptions;
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         //listview
         mListView = (ListView) findViewById(R.id.listOfIngredients);
         mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        noIngredients = (TextView) findViewById(R.id.noIngredients);
+        noIngredients.setVisibility(View.VISIBLE);
         chosenIngredients = new ArrayList<>();
         ingredients = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, ingredients);
@@ -154,6 +158,8 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     String newIngredient = data.getStringExtra("Ingredient");
                     addIngredientToList(newIngredient);
+                    noIngredients = (TextView) findViewById(R.id.noIngredients);
+                    noIngredients.setVisibility(View.GONE);
                 }
                 break;
             }
