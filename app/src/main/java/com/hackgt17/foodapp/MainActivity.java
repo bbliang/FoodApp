@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         //Set mini fab's colors.
         fabWithOptions.setMiniFabsColors(
                 R.color.colorPrimary,
-                R.color.green_fab);
+                R.color.colorPrimaryDark);
 
         //Set main fab clicklistener.
         fabWithOptions.setMainFabOnClickListener(new View.OnClickListener() {
@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
 //                        break;
                     default:
                         break;
-
                 }
+                fabWithOptions.closeOptionsMenu();
             }
         });
 
