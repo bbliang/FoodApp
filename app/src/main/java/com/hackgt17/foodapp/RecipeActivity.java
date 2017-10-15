@@ -107,8 +107,12 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.RecipeViewHolder>{
             @Override
             public void onClick(View v) {
                 Uri uri = Uri.parse(recipes.get(i).getSourceUrl());
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                v.getContext().startActivity(intent);
+                Intent i = new Intent(v.getContext(), RecipeWebViewActivity.class);
+                i.putExtra("recipeUri", uri);
+                v.getContext().startActivity(i);
+
+//                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//                v.getContext().startActivity(intent);
             }
         });
     }

@@ -45,6 +45,7 @@
         custom:color="@color/colorAccent"
         custom:options_color="@color/colorPrimary"
         custom:options_menu="@menu/menu_fab"
+
         custom:src="@drawable/ic_add_white_24dp" />
 
 </android.widget.RelativeLayout>

@@ -2,16 +2,20 @@ package com.hackgt17.foodapp;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.speech.RecognizerIntent;
 import android.widget.CheckedTextView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -80,8 +84,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.fab_mic:
                         startVoiceInput();
                         break;
-                    case R.id.fab_text:
-                        addIngredientByText();
+//                    case R.id.fab_text:
+//                        addIngredientByText();
+//                        break;
                     default:
                         break;
 
@@ -259,9 +264,34 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-    private void addIngredientByText() {
-        //TODO
-    }
+//
+//    private void addIngredientByText() {
+//        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+//        dialog.setTitle("Enter Ingredient Name");
+//        final EditText input = new EditText(this);
+//
+//        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
+//        dialog.setView(input);
+//        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                String text = input.getText().toString().trim();
+//                if (text.isEmpty()) {
+//                    dialog.cancel();
+//                } else {
+//                    addIngredientToList(text);
+//                    dialog.dismiss();
+//                }
+//            }
+//        });
+//        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//            }
+//        });
+//
+//        dialog.show();
+//    }
 
 }
