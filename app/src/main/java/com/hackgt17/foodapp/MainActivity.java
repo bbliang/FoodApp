@@ -127,6 +127,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getApplicationContext(), NutritionActivity.class);
+                i.putExtra("ingredient", (Serializable) ingredients.get(position));
+
+                startActivity(i);
+                return false;
+            }
+        });
+
+
     }
 
     private void launchCameraActivity() {

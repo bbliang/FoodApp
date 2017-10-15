@@ -49,6 +49,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RecipeActivity"></activity>
+        <activity android:name=".NutritionActivity"></activity>
     </application>
 
 </manifest>
