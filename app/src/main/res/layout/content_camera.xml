@@ -46,7 +46,6 @@
         android:id="@+id/photoLayout"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_above="@+id/imageToolsLayout"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/mainOptionsLayout"
         android:layout_above="@+id/useCrop">
