@@ -48,7 +48,8 @@
         android:layout_height="200dp"
         android:layout_above="@+id/imageToolsLayout"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/mainOptionsLayout">
+        android:layout_below="@+id/mainOptionsLayout"
+        android:layout_above="@+id/useCrop">
 
         <com.theartofdev.edmodo.cropper.CropImageView
             android:id="@+id/imageView"
@@ -78,37 +79,49 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/imageToolsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+    <Button
+        android:id="@+id/useCrop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:text="Analyze Image!"
+        android:layout_margin="16dp"
+        />
 
-        <ImageButton
-            android:id="@+id/useCrop"
-            android:layout_width="60dp"
-            android:layout_height="45dp"
-            android:background="@android:color/transparent"
-            android:text="Use Crop"
-            app:srcCompat="@drawable/ic_photo_size_select_large_black_24dp"
-            tools:layout_editor_absoluteX="316dp"
-            tools:layout_editor_absoluteY="389dp"
-            android:layout_marginStart="19dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/imageToolsLayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_above="@id/useCrop"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true">-->
 
-    </RelativeLayout>
+       <!---->
+
+        <!--&lt;!&ndash;<ImageButton&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/useCrop"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="60dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="45dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_alignParentLeft="true"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_alignParentStart="true"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:background="@android:color/transparent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:text="Use Crop"&ndash;&gt;-->
+            <!--&lt;!&ndash;app:srcCompat="@drawable/ic_photo_size_select_large_black_24dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;tools:layout_editor_absoluteX="316dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;tools:layout_editor_absoluteY="389dp" />&ndash;&gt;-->
+
+    <!--</RelativeLayout>-->
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/addItemImageButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/photoLayout"
-        android:layout_marginEnd="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
         app:fabSize="mini"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        app:srcCompat="@drawable/ic_add_white_24dp"
+        android:layout_margin="16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

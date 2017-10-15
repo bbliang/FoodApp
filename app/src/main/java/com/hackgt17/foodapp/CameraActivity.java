@@ -12,12 +12,16 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,6 +30,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -40,6 +45,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
@@ -56,7 +62,8 @@ public class CameraActivity extends AppCompatActivity {
     private static final int SELECT_PICTURE = 2;
 
     TextView resultTV;
-    ImageButton photoButton, urlButton, galleryButton, cropButton, addItemButton;
+    ImageButton photoButton, urlButton, nutritionButton, galleryButton, addItemButton;
+    Button cropButton;
     //EditText urlText;
     CropImageView image;
     Bitmap bitmap;
@@ -87,7 +94,7 @@ public class CameraActivity extends AppCompatActivity {
         broadcastManager = LocalBroadcastManager.getInstance(this);
         //networkOn = NetworkHelper.hasNetworkAccess(this);
 
-        image = (CropImageView) findViewById(imageView);
+        image = (CropImageView) findViewById(R.id.imageView);
         try {
             d = Drawable.createFromStream(getAssets().open("apple.jpg"), null);
             image.setImageBitmap(((BitmapDrawable) d).getBitmap());
@@ -120,7 +127,7 @@ public class CameraActivity extends AppCompatActivity {
                 }
             }
         });
-        cropButton = (ImageButton) findViewById(R.id.useCrop);
+        cropButton = (Button) findViewById(R.id.useCrop);
         cropButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,7 +167,7 @@ public class CameraActivity extends AppCompatActivity {
                 }
                 else {
                     //not sure if getBaseContext will work but I tried 'this' and it didn't work
-                    Toast.makeText(getBaseContext(), "You haven't added a new ingredient", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Please click the \"Analyze\" button first", Toast.LENGTH_LONG).show();
                 }
             }
         });
