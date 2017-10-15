@@ -2,15 +2,10 @@ package com.hackgt17.foodapp;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.util.SparseBooleanArray;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,15 +20,11 @@ import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.hackgt17.foodapp.models.Food2ForkSearchAPI;
 import com.hackgt17.foodapp.models.Ingredient;
 import com.hackgt17.foodapp.models.NutritionAPI;
-import com.hackgt17.foodapp.models.Recipe;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
-
-import static com.hackgt17.foodapp.R.id.parent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -86,10 +77,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.fab_cam:
                         launchCameraActivity();
                         break;
-                    case R.id.fab_text:
+                    case R.id.fab_mic:
                         startVoiceInput();
+                        break;
+                    case R.id.fab_text:
+                        addIngredientByText();
                     default:
                         break;
+
                 }
             }
         });
@@ -263,6 +258,10 @@ public class MainActivity extends AppCompatActivity {
         } catch (ActivityNotFoundException a) {
 
         }
+    }
+
+    private void addIngredientByText() {
+        //TODO
     }
 
 }
