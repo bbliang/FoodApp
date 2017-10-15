@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="speechrecognition-1.2.2">
     <CLASSES>
-      <root url="file://$USER_HOME$/.android/build-cache/58aa2b05c42f95fd5487945e21ab9d5542603c48/output/res" />
-      <root url="jar://$USER_HOME$/.android/build-cache/58aa2b05c42f95fd5487945e21ab9d5542603c48/output/jars/libs/SpeechSDK.jar!/" />
-      <root url="jar://$USER_HOME$/.android/build-cache/58aa2b05c42f95fd5487945e21ab9d5542603c48/output/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/8ef966ececb711e0cc7d01fc142c766126f1fb2a/output/jars/libs/SpeechSDK.jar!/" />
+      <root url="jar://$USER_HOME$/.android/build-cache/8ef966ececb711e0cc7d01fc142c766126f1fb2a/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/8ef966ececb711e0cc7d01fc142c766126f1fb2a/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

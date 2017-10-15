@@ -1,11 +1,14 @@
 package com.hackgt17.foodapp;
 
 import android.annotation.TargetApi;
+import android.app.ActionBar;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -39,4 +42,5 @@ public class RecipeWebViewActivity extends AppCompatActivity {
         recipeWebView.loadUrl(recipeUri.toString());
 
     }
+
 }

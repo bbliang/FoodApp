@@ -62,7 +62,7 @@ public class NutritionActivity extends AppCompatActivity {
         entries.add(new BarEntry(2, (float) (food.getCholesterol()/300)*100));
         entries.add(new BarEntry(3, (float)(food.getSodium()/2400)*100));
         entries.add(new BarEntry(4, (float)(food.getCarbohydrates()/300)*100));
-        entries.add(new BarEntry(5, (float) (food.getSugar()/30)*100));
+        entries.add(new BarEntry(5, (float) (food.getSugar()/150)*100));
         entries.add(new BarEntry(6, (float) (food.getProtein()/50)*100));
 //        entries.add(new BarEntry(7, (float) hit.getFields().getNfVitaminADv(), "(mg)"));
 //        entries.add(new BarEntry(8, (float) hit.getFields().getNfVitaminCDv(), "(mg)"));
