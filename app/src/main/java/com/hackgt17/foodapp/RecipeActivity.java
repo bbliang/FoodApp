@@ -28,6 +28,7 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
+        recipes = (List<Recipe>) getIntent().getSerializableExtra("recipeList");
         RecyclerView rv = (RecyclerView)findViewById(R.id.rv);
         rv.setHasFixedSize(true);
 
@@ -39,7 +40,6 @@ public class RecipeActivity extends AppCompatActivity {
         RVAdapter adapter = new RVAdapter(recipes);
         rv.setAdapter(adapter);
 
-        List<Recipe> recipes;
     }
 }
 
@@ -60,7 +60,7 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.RecipeViewHolder>{
         }
     }
 
-    List<Recipe> recipes;
+    List<Recipe> recipes; // for this inner class RV Adapter
 
 
     RVAdapter(List<Recipe> recipes){

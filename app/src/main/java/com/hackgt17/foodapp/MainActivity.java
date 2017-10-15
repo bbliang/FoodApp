@@ -188,14 +188,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean success) {
             if (success) {
-                //Intent i = new Intent(getApplicationContext(), RecipeActivity.class);
-                //i.putExtra("recipeList", (Serializable) recipeList);
+                Intent i = new Intent(getApplicationContext(), RecipeActivity.class);
+                i.putExtra("recipeList", (Serializable) recipeList);
                 // use getIntent().getSerializableExtra("recipeList") to get back that List
 
-                //startActivity(i);
-                for (Recipe r : recipeList) {
-                    Log.d("Recipe Info:", r.toString());
-                }
+                startActivity(i);
+//                for (Recipe r : recipeList) {
+//                    Log.d("Recipe Info:", r.toString());
+//                }
 
             } else {
                 Toast.makeText(getApplicationContext(), "Sorry, but there was an error with your request.", Toast.LENGTH_LONG).show();
