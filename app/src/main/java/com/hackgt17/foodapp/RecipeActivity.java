@@ -30,8 +30,10 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
+        recipes = (List<Recipe>) getIntent().getSerializableExtra("recipeList");
         RecyclerView rv = (RecyclerView)findViewById(R.id.rv);
         rv.setHasFixedSize(true);
+
 
         //wtf does context mean
         //TODO FIX THIS PARAMETER
