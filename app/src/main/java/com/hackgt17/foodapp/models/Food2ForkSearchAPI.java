@@ -28,12 +28,6 @@ import java.util.Map;
 
 public class Food2ForkSearchAPI extends AsyncTask<Void, Void, Boolean> {
 
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    //public static java.net.CookieManager cookieManager = new java.net.CookieManager();
-
     private final String ingredients;
     private final Context context;
     protected List<Recipe> recipeList = new ArrayList<>();

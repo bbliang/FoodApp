@@ -37,5 +37,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.0'
     compile 'com.github.arthurghazaryan:floatingactionmenu:1.0.0' //floating action menu
     compile 'com.squareup.picasso:picasso:2.5.2' //Picasso dependency
+    compile 'com.microsoft.projectoxford:speechrecognition:1.2.2' //speech to text dependency
     testCompile 'junit:junit:4.12'
 }

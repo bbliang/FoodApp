@@ -63,16 +63,16 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.RecipeViewHolder>{
             publisher = (TextView) itemView.findViewById(R.id.publisher_name);
             photo = (ImageView) itemView.findViewById(R.id.recipe_photo);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v)
-                {
-                    int i = ((ViewGroup) v.getParent()).indexOfChild(v);
-                    Uri uri = Uri.parse(recipes.get(i).getSourceUrl());
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    v.getContext().startActivity(intent);
-                }
-            });
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v)
+//                {
+//                    int i = ((ViewGroup) v.getParent()).indexOfChild(v);
+//                    Uri uri = Uri.parse(recipes.get(i).getSourceUrl());
+//                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//                    v.getContext().startActivity(intent);
+//                }
+//            });
         }
     }
 
@@ -96,12 +96,21 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.RecipeViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(RecipeViewHolder recipeViewHolder, int i) {
+    public void onBindViewHolder(RecipeViewHolder recipeViewHolder, final int i) {
         recipeViewHolder.title.setText(recipes.get(i).getTitle());
         recipeViewHolder.publisher.setText(recipes.get(i).getPublisher());
         Picasso.with(recipeViewHolder.itemView.getContext()) //TODO EVALUATE
                 .load(recipes.get(i).getImageUrl())
                 .into(recipeViewHolder.photo);
+
+        recipeViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(recipes.get(i).getSourceUrl());
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

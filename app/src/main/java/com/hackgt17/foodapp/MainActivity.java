@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import com.github.ag.floatingactionmenu.OptionsFabLayout;
 import com.hackgt17.foodapp.models.Food2ForkSearchAPI;
+import com.hackgt17.foodapp.models.Ingredient;
+import com.hackgt17.foodapp.models.NutritionAPI;
 import com.hackgt17.foodapp.models.Recipe;
 
 import java.io.Serializable;
@@ -35,11 +37,12 @@ import static com.hackgt17.foodapp.R.id.parent;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<String> ingredients;
+    private ArrayList<Ingredient> ingredients;
     private ArrayList<Boolean> chosenIngredients;
     private ArrayAdapter adapter;
     private ListView mListView;
     private LocalGetRecipesAPI localGetRecipesAPI;
+    private LocalNutritionAPI localNutritionAPI;
     private OptionsFabLayout fabWithOptions;
 
 
@@ -152,12 +155,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void addIngredientToList(String newIngredient) {
+        localNutritionAPI = new LocalNutritionAPI(newIngredient);
+        localNutritionAPI.execute((Void) null);
+    }
+
+    private void addIngredientToList(Ingredient newIngredient) {
         ingredients.add(newIngredient);
         mListView.setItemChecked(ingredients.size() - 1, true);
         chosenIngredients.add(true);
 
         ((ArrayAdapter)mListView.getAdapter()).notifyDataSetChanged();
-        Toast.makeText(this, "Added " + newIngredient, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Added " + newIngredient.getName(), Toast.LENGTH_LONG).show();
     }
 
     public void getRecipes(View view) {
@@ -170,10 +178,10 @@ public class MainActivity extends AppCompatActivity {
             return;
         } else {
             for (int i = 0; i < chosenIngredients.size(); i++) {
-                if (chosenIngredients.get(i) && !includedFood.contains(ingredients.get(i))) {
+                if (chosenIngredients.get(i) && !includedFood.contains(ingredients.get(i).getName())) {
                     // if that index is set to true and that food is not a duplicate
                     ingredientsSelected += ", " + ingredients.get(i);
-                    includedFood.add(ingredients.get(i));
+                    includedFood.add(ingredients.get(i).getName());
                 }
             }
             ingredientsSelected = ingredientsSelected.substring(2); // removes the first comma-space
@@ -206,7 +214,23 @@ public class MainActivity extends AppCompatActivity {
 //                }
 
             } else {
-                Toast.makeText(getApplicationContext(), "Sorry, but there was an error with your request.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Sorry, but there was an error with finding recipes.", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    class LocalNutritionAPI extends NutritionAPI {
+
+        public LocalNutritionAPI(String ingredient) {
+            super(ingredient, getApplicationContext());
+        }
+
+        @Override
+        protected void onPostExecute(Boolean success) {
+            if (success) {
+                addIngredientToList(ingredientNutritionalInfo);
+            } else {
+                Toast.makeText(getApplicationContext(), "Sorry, but there was an error with finding nutritional info.", Toast.LENGTH_LONG).show();
             }
         }
 
