@@ -1,5 +1,7 @@
 package com.hackgt17.foodapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -28,7 +30,6 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
-        recipes = (List<Recipe>) getIntent().getSerializableExtra("recipeList");
         RecyclerView rv = (RecyclerView)findViewById(R.id.rv);
         rv.setHasFixedSize(true);
 
@@ -39,6 +40,8 @@ public class RecipeActivity extends AppCompatActivity {
 
         RVAdapter adapter = new RVAdapter(recipes);
         rv.setAdapter(adapter);
+
+        List<Recipe> recipes;
 
     }
 }
@@ -57,11 +60,22 @@ class RVAdapter extends RecyclerView.Adapter<RVAdapter.RecipeViewHolder>{
             title = (TextView) itemView.findViewById(R.id.recipe_title);
             publisher = (TextView) itemView.findViewById(R.id.publisher_name);
             photo = (ImageView) itemView.findViewById(R.id.recipe_photo);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    int i = ((ViewGroup) v.getParent()).indexOfChild(v);
+                    Uri uri = Uri.parse(recipes.get(i).getSourceUrl());
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 
-    List<Recipe> recipes; // for this inner class RV Adapter
 
+    static List<Recipe> recipes;
 
     RVAdapter(List<Recipe> recipes){
         this.recipes = recipes;

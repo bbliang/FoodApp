@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 //checkedTextView.setChecked(checkedTextView.isChecked());
             }
         });
+
     }
 
     private void launchCameraActivity() {
